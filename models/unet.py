@@ -1,18 +1,24 @@
 import segmentation_models_pytorch as smp
 import torch
 from utils.config import CFG
-
+from monai.networks.nets import UNet
 
 def build_model(cfg):
-    model = smp.Unet(
-        encoder_name=cfg.backbone,      # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
-        encoder_weights="imagenet",     # use `imagenet` pre-trained weights for encoder initialization
-        in_channels=3,                  # model input channels (1 for gray-scale images, 3 for RGB, etc.)
-        classes=cfg.num_classes,        # model output channels (number of classes in your dataset)
-        activation=None,
-    )
-    model.to(cfg.device)
-    return model
+    model = UNet(
+    spatial_dims=3,
+    in_channels=cfg.in_channels,
+    out_channels=cfg.out_channels,
+    channels=(32, 64, 128, 256, 512),
+    strides=(2, 2, 2, 2),
+    kernel_size=3,
+    up_kernel_size=3,
+    num_res_units=2,
+    act="PRELU",
+    norm="BATCH",
+    dropout=0.2,
+    bias=True,
+    dimensions=None,
+).to(cfg.device)
 
 def load_model(path):
     model = build_model()

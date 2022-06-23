@@ -2,6 +2,7 @@ import numpy as np
 import torch
 import random
 import os
+import monai
 
 BASE_PATH  = '/kaggle/input/uw-madison-gi-tract-image-segmentation'
 
