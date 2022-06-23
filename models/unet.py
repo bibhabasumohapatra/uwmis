@@ -7,6 +7,7 @@ def build_model(cfg):
     model = UNet(
     spatial_dims=3,
     in_channels=cfg.in_channels, #RGB or Grayscale
+    out_channels=cfg.num_classes
     channels=(32, 64, 128, 256, 512),
     strides=(2, 2, 2, 2),
     kernel_size=3,
