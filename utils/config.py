@@ -12,6 +12,7 @@ class CFG:
 
         self.seed          = args.seed
         self.debug         = False if args.debug == "False" else True # set debug=False for Full Training
+        self.in_channels = 3
         self.two_half_D    = False if args.two_half_D == "False" else True
         self.exp_name      = args.exp_name
         self.comment       = args.comment
