@@ -4,7 +4,7 @@ from utils.config import CFG
 
 
 def build_model(cfg):
-    model = smp.Unet(
+    model = smp.Deeplabv3(
         encoder_name=cfg.backbone,      # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
         encoder_weights="noisy-student",     # use `imagenet` pre-trained weights for encoder initialization
         in_channels=3,                  # model input channels (1 for gray-scale images, 3 for RGB, etc.)
